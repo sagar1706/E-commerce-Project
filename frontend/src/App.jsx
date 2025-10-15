@@ -9,6 +9,8 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import AdminDashboard from "./pages/AdminDashboard"
+import AdminLayout from "./pages/Adminlayout"
 
 function App() {
 
@@ -46,6 +48,11 @@ function App() {
         <Route path="/carts" element = {<Cart/>}/>
         <Route path="/about" element = {<About/>}/>
         <Route path="/contact" element = {<Contact/>}/>
+        {/* Admin routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} /> {/* /admin */}
+          {/* You can add more nested admin routes here */}
+        </Route>
       </Routes>
       </BrowserRouter>
   )

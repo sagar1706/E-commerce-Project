@@ -20,7 +20,11 @@ const Login = () => {
       const userData = res.user || { name: "User" }; // backend must return user info
       login(userData, res.token);
       alert("Login successful!");
-      window.location.href = "/";
+      if (userData.role === "admin") {
+        window.location.href = "/admin"; // admin dashboard route
+      } else {
+        window.location.href = "/"; // normal user home
+      }
     } else {
       setError(res.message || "Invalid email or password");
     }
