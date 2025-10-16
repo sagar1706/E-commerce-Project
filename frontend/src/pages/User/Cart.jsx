@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext";
-import { getCart, updateCart, removeCartItem } from "../api/auth";
+import { useAuth } from "../../context/AuthContext";
+import { getCart, updateCart, removeCartItem } from "../../api/auth";
 import { FiPlus, FiMinus, FiTrash2 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 

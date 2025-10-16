@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../api/axios";
+import api from "../../api/axios";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await api.get("/products/list-products.php"); 
+        const res = await api.get("/products/list-products.php");
         setProducts(res.data.products || []);
       } catch (err) {
         console.error("Failed to fetch products:", err);
@@ -25,6 +25,13 @@ const Home = () => {
 
   // Featured products: top 4 for hero section
   const featured = products.slice(0, 4);
+
+  // Helper function to get full image URL
+  const getImageUrl = (imageName) => {
+    return imageName
+      ? `http://localhost/Ecommerce-Project/backend/uploads/${imageName}`
+      : "/placeholder.png";
+  };
 
   return (
     <div className="bg-gray-50">
@@ -52,7 +59,34 @@ const Home = () => {
               className="bg-white border rounded-2xl p-4 shadow-lg hover:shadow-xl transition duration-300"
             >
               <img
-                src={product.image || "/placeholder.png"}
+                src={getImageUrl(product.image)}
+                alt={product.name}
+                className="w-full h-48 object-cover rounded-xl mb-4"
+              />
+              <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
+              <p className="text-gray-700 mb-2">${product.price}</p>
+              <Link
+                to={`/product/${product.id}`}
+                className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
+              >
+                View Details
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* All Products */}
+      <section className="container mx-auto px-6 py-10">
+        <h2 className="text-3xl font-bold mb-6 text-center">All Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="bg-white border rounded-2xl p-4 shadow-lg hover:shadow-xl transition duration-300"
+            >
+              <img
+                src={getImageUrl(product.image)}
                 alt={product.name}
                 className="w-full h-48 object-cover rounded-xl mb-4"
               />

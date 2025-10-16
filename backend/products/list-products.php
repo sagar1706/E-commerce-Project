@@ -30,7 +30,7 @@ $search   = $_GET['search'] ?? '';
 $minPrice = $_GET['minPrice'] ?? 0;
 $maxPrice = $_GET['maxPrice'] ?? 0;
 $page     = $_GET['page'] ?? 1;
-$limit    = $_GET['limit'] ?? 10;
+$limit    = $_GET['limit'] ?? 50;
 $offset   = ($page - 1) * $limit;
 
 // 2️⃣ Build SQL
