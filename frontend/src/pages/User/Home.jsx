@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { Link } from "react-router-dom";
+import HeroCarousel from "../../components/home/HeroCarousel";
+import CategorySlider from "../../components/home/CategorySlider";
+import FeaturedProducts from "../../components/home/FeaturedProducts";
+import OffersSection from "../../components/home/OffersSection";
+import TestimonialsSection from "../../components/home/TestimonialsSection";
+import TopBrandsSection from "../../components/home/TopBrandsSection";
+import CategoriesSection from "../../components/home/CategoriesSection";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -36,72 +43,21 @@ const Home = () => {
   return (
     <div className="bg-gray-50">
       {/* Hero Banner */}
-      <section className="relative bg-indigo-600 text-white h-64 flex items-center justify-center rounded-b-3xl shadow-lg">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-2">Welcome to GoCart</h1>
-          <p className="text-lg mb-4">Shop the best products at unbeatable prices</p>
-          <Link
-            to="/products"
-            className="bg-white text-indigo-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition"
-          >
-            Shop Now
-          </Link>
-        </div>
-      </section>
+      <HeroCarousel/>
+     
+      <OffersSection/>
+
+      <CategoriesSection/>
+
+      <TopBrandsSection/>
 
       {/* Featured Products */}
-      <section className="container mx-auto px-6 py-10">
-        <h2 className="text-3xl font-bold mb-6 text-center">Featured Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {featured.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white border rounded-2xl p-4 shadow-lg hover:shadow-xl transition duration-300"
-            >
-              <img
-                src={getImageUrl(product.image)}
-                alt={product.name}
-                className="w-full h-48 object-cover rounded-xl mb-4"
-              />
-              <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
-              <p className="text-gray-700 mb-2">${product.price}</p>
-              <Link
-                to={`/product/${product.id}`}
-                className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
-              >
-                View Details
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
+<FeaturedProducts products={products} title="Featured Products" limit={4} />
 
-      {/* All Products */}
-      <section className="container mx-auto px-6 py-10">
-        <h2 className="text-3xl font-bold mb-6 text-center">All Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white border rounded-2xl p-4 shadow-lg hover:shadow-xl transition duration-300"
-            >
-              <img
-                src={getImageUrl(product.image)}
-                alt={product.name}
-                className="w-full h-48 object-cover rounded-xl mb-4"
-              />
-              <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
-              <p className="text-gray-700 mb-2">${product.price}</p>
-              <Link
-                to={`/product/${product.id}`}
-                className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
-              >
-                View Details
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
+{/* All Products */}
+<FeaturedProducts products={products} title="All Products" />
+
+<TestimonialsSection/>
     </div>
   );
 };

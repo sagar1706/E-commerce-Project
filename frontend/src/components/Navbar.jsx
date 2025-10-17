@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
 import { FiPlus, FiMinus, FiTrash2 } from "react-icons/fi";
 import { useAuth } from "../context/AuthContext";
-import { getCart, updateCart, removeCartItem } from "../api/auth";
+import { getCart, updateCart, removeCartItem } from "../api/cart";
 
 const Navbar = ({ location }) => {
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
